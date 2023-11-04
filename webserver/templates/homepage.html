@@ -1,64 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ARTO</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="homepage.js"></script>
+    <style>
+        /* Custom Styles */
+        .bg-main-background {
+            background-color: #faeee7;
+        }
+
+        .text-headline {
+            color: #33272a;
+        }
+
+        .text-paragraph {
+            color: #594a4e;
+        }
+
+        .bg-button {
+            background-color: #ff8ba7;
+        }
+
+        .text-button {
+            color: #33272a;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translate3d(0, 20px, 0);
+            }
+
+            to {
+                opacity: 1;
+                transform: translate3d(0, 0, 0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 1s ease-out;
+        }
+    </style>
 </head>
-<body class="bg-gray-100">
 
-    <!-- Header -->
-    <header class="text-center p-6 bg-white shadow">
-        <h1 class="text-5xl font-bold text-gray-800">ARTO</h1>
-        <p class="text-gray-500 text-lg">Art Reimagined Through Originality</p>
-    </header>
+<body class="bg-main-background font-sans leading-normal tracking-normal min-h-screen">
 
-    <!-- Main content -->
-    <main class="mt-10">
-        <div class="container mx-auto px-4">
-            <!-- Hero Section -->
-            <section class="text-center mb-20">
-                <h2 class="text-4xl font-bold text-gray-800 mb-4">Unleash Your Creativity</h2>
-                <p class="text-gray-600 mb-8">Discover a world where art transcends boundaries. Join ARTO today.</p>
-                <a href="#features"
-                    class="bg-blue-500 text-white font-bold py-3 px-8 rounded-lg hover:bg-blue-600 transition duration-300">
-                    Explore Features
-                </a>
-            </section>
+    <!-- Main content container -->
+    <div class="w-full max-w-lg mx-auto text-center p-6 fade-in-up">
 
-            <!-- Features Section -->
-            <section id="features" class="mb-20">
-                <h3 class="text-center text-3xl font-bold text-gray-800 mb-10">Why ARTO?</h3>
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
-                    <!-- Feature 1 -->
-                    <div class="bg-white p-6 rounded-lg shadow-lg">
-                        <h4 class="text-2xl font-bold text-gray-800 mb-3">Innovation</h4>
-                        <p class="text-gray-600">Pushing the envelope in the digital art space with cutting-edge
-                            technology.</p>
-                    </div>
-                    <!-- Feature 2 -->
-                    <div class="bg-white p-6 rounded-lg shadow-lg">
-                        <h4 class="text-2xl font-bold text-gray-800 mb-3">Community</h4>
-                        <p class="text-gray-600">Connect with artists and enthusiasts in a vibrant and supportive
-                            community.</p>
-                    </div>
-                    <!-- Feature 3 -->
-                    <div class="bg-white p-6 rounded-lg shadow-lg">
-                        <h4 class="text-2xl font-bold text-gray-800 mb-3">Exposure</h4>
-                        <p class="text-gray-600">Get your art in front of a global audience and make your mark on the
-                            world.</p>
-                    </div>
+        <!-- Title with gradient -->
+        <h1 class="text-6xl font-bold mb-8 text-[#ff8ba7]">
+            ARTO
+        </h1>
+
+
+        <!-- Subtitle / Description -->
+        <p class="mb-10 text-xl text-paragraph leading-relaxed font-light">
+            Discover the future of stock predictions with ARTO's AI-driven insights.
+        </p>
+
+        <!-- Centered Search Bar -->
+        <form>
+            <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only">Search</label>
+            <div class="relative">
+                <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                    <svg class="w-4 h-4 text-gray-500" aria-hidden="true" fill="none" viewBox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                    </svg>
                 </div>
-            </section>
-        </div>
-    </main>
+                <input type="search" id="default-search"
+                    class="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500"
+                    placeholder="Search Mockups, Logos..." required>
+                <button type="submit"
+                    class="text-white absolute right-2.5 bottom-2.5 bg-[#ff8ba7] hover:bg-[#ff8ba7]/80 focus:ring-4 focus:outline-none focus:ring-[#ff8ba7]/50 font-medium rounded-lg text-sm px-4 py-2">Search</button>
+            </div>
+        </form>
+
+
+    </div>
 
     <!-- Footer -->
-    <footer class="text-center p-6 bg-white shadow mt-20">
-        <p class="text-gray-600">&copy; 2023 ARTO. All Rights Reserved.</p>
+    <footer class="w-full absolute bottom-0 bg-[#33272a] text-white p-4 text-center">
+        <p>© 2023 ARTO. All rights reserved.</p>
     </footer>
 
 </body>
+
 </html>
