@@ -10,7 +10,7 @@
     <style>
         /* Custom Styles */
         .bg-main-background {
-            background-color: #faeee7;
+            background-color: #0f0e17;
         }
 
         .text-headline {
@@ -50,35 +50,36 @@
 <body class="bg-main-background font-sans leading-normal tracking-normal min-h-screen">
 
     <!-- Main content container -->
-    <div class="w-full max-w-lg mx-auto text-center p-6 fade-in-up">
+    <div class="w-full max-w-lg mx-auto text-center p-6 fade-in-up mt-32">
 
         <!-- Title with gradient -->
-        <h1 class="text-6xl font-bold mb-8 text-[#ff8ba7]">
+
+        <h1 class="text-6xl font-bold mb-8 text-[#f9bc60]">
             ARTO
         </h1>
 
 
         <!-- Subtitle / Description -->
-        <p class="mb-10 text-xl text-paragraph leading-relaxed font-light">
+        <p class="mb-10 text-xl text-paragraph leading-relaxed font-light text-[#faeee7]">
             Discover the future of stock predictions with ARTO's AI-driven insights.
         </p>
 
         <!-- Centered Search Bar -->
-        <form>
+        <form id="search" method="post" action="/search">
             <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only">Search</label>
             <div class="relative">
                 <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                    <svg class="w-4 h-4 text-gray-500" aria-hidden="true" fill="none" viewBox="0 0 20 20"
+                    <svg class="w-4 h-4 text-[#f9bc60]" aria-hidden="true" fill="none" viewBox="0 0 20 20"
                         xmlns="http://www.w3.org/2000/svg">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                     </svg>
                 </div>
-                <input type="search" id="default-search"
-                    class="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500"
-                    placeholder="Search Mockups, Logos..." required>
+                <input type="search" id="default-search" name = "s"
+                    class="block w-full p-4 pl-10 text-md text-[#0f0e17] border border-[#faeee7] rounded-lg bg-[#faeee7] focus:ring-blue-500 focus:border-[#ff8ba7]"
+                    placeholder="Enter stock symbols or company names..." required>
                 <button type="submit"
-                    class="text-white absolute right-2.5 bottom-2.5 bg-[#ff8ba7] hover:bg-[#ff8ba7]/80 focus:ring-4 focus:outline-none focus:ring-[#ff8ba7]/50 font-medium rounded-lg text-sm px-4 py-2">Search</button>
+                    class="text-white absolute right-2.5 bottom-2.5 bg-[#f9bc60] hover:bg-[#f9bc60]/60 focus:ring-4 focus:outline-none focus:ring-[#ff8ba7]/50 font-medium rounded-lg text-sm px-4 py-2">Search</button>
             </div>
         </form>
 
@@ -86,7 +87,7 @@
     </div>
 
     <!-- Footer -->
-    <footer class="w-full absolute bottom-0 bg-[#33272a] text-white p-4 text-center">
+    <footer class="w-full fixed bottom-0 bg-[#0f0e17] text-white p-4 text-center">
         <p>© 2023 ARTO. All rights reserved.</p>
     </footer>
 
