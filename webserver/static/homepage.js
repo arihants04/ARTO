@@ -14,10 +14,19 @@ form.addEventListener('submit', function (event) {
   // Create FormData object from the form
   const formData = new FormData(form);
 
+  const val = document.getElementById("default-search").value
+
   // Use Fetch API to send the POST request with FormData
   fetch(`/search`, {
     method: 'POST',
-    body: formData // FormData is automatically set as the body
+    body: JSON.stringify({  
+        'key' : val
+    }),
+    headers: {
+      "Content-Type": "application/json",
+      // 'Content-Type': 'application/x-www-form-urlencoded',
+    }
+// FormData is automatically set as the body
     // No need to set 'Content-Type': 'multipart/form-data' header,
     // since the browser sets it automatically with the proper boundary
   })
