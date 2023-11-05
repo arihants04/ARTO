@@ -117,10 +117,14 @@ form.addEventListener('submit', function (event) {
   })
   .then(data => {
     console.log('Success:', data);
+    document.querySelector("body").classList.remove('overflow-y-hidden');
     document.getElementById("main-content").classList.remove('mt-40');
     document.getElementById("blurb").classList.add('scale-0');
     document.getElementById("blurb").style.marginBottom = `-${blurb.offsetHeight}px`;
     document.getElementById("info").classList.remove('hidden');
+    document.getElementById("description").classList.remove('hidden');
+    document.getElementById("summary").classList.remove('hidden');
+
     
     setTimeout(()=>{
       document.getElementById("blurb").classList.add("hidden");
