@@ -1,4 +1,4 @@
-Team: ARTO
+# Team: ARTO
 Authors: Ari, Rohan, Thejas, Oscar
 
 Summary:
