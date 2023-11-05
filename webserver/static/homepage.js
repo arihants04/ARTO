@@ -124,9 +124,9 @@ form.addEventListener('submit', function (event) {
     document.getElementById("info").classList.remove('hidden');
     document.getElementById("description").classList.remove('hidden');
     document.getElementById("summary").classList.remove('hidden');
+
     if (val.toUpperCase() == "NVDA"){
         console.log("NVDA");
-        console.log(typeof(data));
         data = JSON.parse(data);
 
         document.getElementById("description-title").innerHTML = val.toUpperCase();
@@ -136,7 +136,49 @@ form.addEventListener('submit', function (event) {
         document.getElementById("description-text-c").innerHTML = "Closing price: $"+data["stock_info"][3].toFixed(2);
         
     }
+    else if (val.toUpperCase() == "AAPL"){
+        console.log("AAPL");
+        data = JSON.parse(data);
+
+        document.getElementById("description-title").innerHTML = val.toUpperCase();
+        document.getElementById("description-text-o").innerHTML = "Opening price: $"+data["stock_info"][0].toFixed(2);
+        document.getElementById("description-text-h").innerHTML = "Highest price: $"+data["stock_info"][1].toFixed(2);
+        document.getElementById("description-text-l").innerHTML = "Lowest price: $"+data["stock_info"][2].toFixed(2);
+        document.getElementById("description-text-c").innerHTML = "Closing price: $"+data["stock_info"][3].toFixed(2);
+    }
+    else if (val.toUpperCase() == "TSLA"){
+        console.log("TSLA");
+        data = JSON.parse(data);
+
+        document.getElementById("description-title").innerHTML = val.toUpperCase();
+        document.getElementById("description-text-o").innerHTML = "Opening price: $"+data["stock_info"][0].toFixed(2);
+        document.getElementById("description-text-h").innerHTML = "Highest price: $"+data["stock_info"][1].toFixed(2);
+        document.getElementById("description-text-l").innerHTML = "Lowest price: $"+data["stock_info"][2].toFixed(2);
+        document.getElementById("description-text-c").innerHTML = "Closing price: $"+data["stock_info"][3].toFixed(2);
+    }
+
+    else if (val.toUpperCase() == "AMZN"){
+        console.log("AMZN");
+        data = JSON.parse(data);
+
+        document.getElementById("description-title").innerHTML = val.toUpperCase();
+        document.getElementById("description-text-o").innerHTML = "Opening price: $"+data["stock_info"][0].toFixed(2);
+        document.getElementById("description-text-h").innerHTML = "Highest price: $"+data["stock_info"][1].toFixed(2);
+        document.getElementById("description-text-l").innerHTML = "Lowest price: $"+data["stock_info"][2].toFixed(2);
+        document.getElementById("description-text-c").innerHTML = "Closing price: $"+data["stock_info"][3].toFixed(2);
+    }
     
+    else if (val.toUpperCase() == "NFLX"){
+        console.log("NFLX");
+        data = JSON.parse(data);
+
+        document.getElementById("description-title").innerHTML = val.toUpperCase();
+        document.getElementById("description-text-o").innerHTML = "Opening price: $"+data["stock_info"][0].toFixed(2);
+        document.getElementById("description-text-h").innerHTML = "Highest price: $"+data["stock_info"][1].toFixed(2);
+        document.getElementById("description-text-l").innerHTML = "Lowest price: $"+data["stock_info"][2].toFixed(2);
+        document.getElementById("description-text-c").innerHTML = "Closing price: $"+data["stock_info"][3].toFixed(2);
+    }
+
     setTimeout(()=>{
       document.getElementById("blurb").classList.add("hidden");
     }, 500)
