@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ARTO</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="homepage.js"></script>
     <style>
         /* Custom Styles */
         .bg-main-background {
@@ -65,7 +64,7 @@
         </p>
 
         <!-- Centered Search Bar -->
-        <form id="search" method="post" action="/search">
+        <form id="search">
             <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only">Search</label>
             <div class="relative">
                 <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -75,11 +74,11 @@
                             d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                     </svg>
                 </div>
-                <input type="search" id="default-search" name = "s"
-                    class="block w-full p-4 pl-10 text-md text-[#0f0e17] border border-[#faeee7] rounded-lg bg-[#faeee7] focus:ring-blue-500 focus:border-[#ff8ba7]"
+                <input type="text" id="default-search"
+                    class="block w-full p-4 pl-10 text-md text-[#0f0e17] border border-[#faeee7] rounded-lg bg-[#faeee7]"
                     placeholder="Enter stock symbols or company names..." required>
-                <button type="submit"
-                    class="text-white absolute right-2.5 bottom-2.5 bg-[#f9bc60] hover:bg-[#f9bc60]/60 focus:ring-4 focus:outline-none focus:ring-[#ff8ba7]/50 font-medium rounded-lg text-sm px-4 py-2">Search</button>
+                <button type="submit" id="search-button"
+                    class="text-white absolute right-2.5 bottom-2.5 bg-[#f9bc60] hover:bg-[#f9bc60]/60 font-medium rounded-lg text-sm px-4 py-2">Search</button>
             </div>
         </form>
 
@@ -90,7 +89,6 @@
     <footer class="w-full fixed bottom-0 bg-[#0f0e17] text-white p-4 text-center">
         <p>© 2023 ARTO. All rights reserved.</p>
     </footer>
-
-</body>
-
+    <script src="../static/homepage.js"></script>
+    </body>
 </html>
