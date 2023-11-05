@@ -7,6 +7,38 @@ app = Flask(__name__)
 def homepage():
     return render_template('homepage.html')
 
+@app.route('/getai', methods=['POST'])
+def getai():
+    if request.method == 'POST':
+        tick = str(request.json['tick']).upper()
+        sen = str(request.json['sen'])
+        rMod = str(request.json['reg'])
+        clo = str(request.json['close'])
+        insT = str(request.json['ins'])
+
+
+        output = replicate.run(
+          "meta/llama-2-13b-chat:f4e2de70d66816a838a89eeeb621910adffb0dd0baba3976c96980970978018d",
+          input={
+            "top_k": 50,
+            "top_p": 1,
+            "prompt": f"Will {tick} value go up or down? The current consumer sentiment is {sen}, \
+            a regression model is predicting a change of {rMod}, and it closed at {clo} today. Most insiders \
+              are currently {insT}",
+            "temperature": 0.75,
+            "system_prompt": "You answer the prompt without any greetings.You answer in short replies of 2 to 3 sentences",
+            "max_new_tokens": 800,
+            "min_new_tokens": -1,
+            "repetition_penalty": 1
+          }
+        )
+        bruh = ""
+
+        for i in output:
+            bruh += (i)
+
+        return jsonify(bruh)
+
 @app.route('/search', methods=['POST'])
 def search():
     if request.method == 'POST':
@@ -14,7 +46,7 @@ def search():
 
         data = str(request.json['key']).upper()
 
-        TICKERS = ["NVDA", "NFLX", "TSLA", "APPL", "META", "BBBY"]
+        TICKERS = ["NVDA", "NFLX", "TSLA", "AAPL", "META", "BBBY"]
 
         if data not in TICKERS:
             return jsonify("404")
@@ -24,10 +56,24 @@ def search():
         res_dict["stock_info"] = inf
         res_dict["regression_prediction"] = pred
 
+        res_dict["insider_trading"] = get_insider_trading(data)
+
 
 
         return jsonify(res_dict)
 
+def get_insider_trading(stock):
+    df = pd.read_csv('trading.csv')
+    df = df[df['Symbol'] == stock]
+    bruh = []
+
+    for index, row in df.iterrows():
+        bruh.append(row['Transaction Date'])
+        bruh.append(str(row['Transaction Total']))
+        bruh.append(row['Transaction'])
+    #return as a row where each one is 3
+
+    return bruh
 
 def last_business_day():
     today = datetime.now()
@@ -136,6 +182,9 @@ if __name__ == '__main__':
     warnings.filterwarnings("ignore")
 
     import yfinance as yf
+    import replicate
+
+    import pandas as pd
 
     nltk.download("vader_lexicon")
 
