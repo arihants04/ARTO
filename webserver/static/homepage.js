@@ -29,6 +29,7 @@ form.addEventListener('submit', function (event) {
   })
   .then(data => {
     console.log('Success:', data);
+    mainContent.classList.remove('mt-32');
   })
   .catch(error => {
     console.error('There has been a problem with your fetch operation:', error);
