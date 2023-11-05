@@ -26,7 +26,7 @@ def getai():
             a regression model is predicting a change of {rMod} from open, and it closed at {clo} today. Most insiders \
               are currently {insT}",
             "temperature": 0.75,
-            "system_prompt": "You answer the prompt without any greetings.You answer in short replies of 2 to 3 sentences",
+            "system_prompt": "You answer the prompt without any greetings.You answer in short replies of 5 to 6 sentences",
             "max_new_tokens": 800,
             "min_new_tokens": -1,
             "repetition_penalty": 1
@@ -183,15 +183,14 @@ if __name__ == '__main__':
     warnings.filterwarnings("ignore")
 
     import yfinance as yf
-    import replicate
 
     import pandas as pd
 
     nltk.download("vader_lexicon")
+    import os
 
-
-
-
+    os.environ["REPLICATE_API_TOKEN"] = "r8_665IT7R7NxfzxuQM1tNpMa6bK2sVlnZ2lbbtF"
+    import replicate
 
 
     app.run(debug=True, port=5000)
