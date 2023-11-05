@@ -75,6 +75,7 @@ form.addEventListener('submit', function (event) {
     return response.text(); // or response.json() if your server responds with JSON
   })
   .then(data => {
+
     console.log('Success:', data);
     document.querySelector("body").classList.remove('overflow-y-hidden');
     document.getElementById("main-content").classList.remove('mt-40');
@@ -129,11 +130,64 @@ form.addEventListener('submit', function (event) {
             }
         };
     var gaugeChart = new Chart(ctx, config);
+
+    //INTERPRET INSIDER TRADING
+    let d = data["insider_trading"]
+    let sad = [[],[],[]]
+    for(let i = 0; i < d.length; i){
+      sad[0].push(d[i++])
+      sad[1].push(d[i++])
+      sad[2].push(d[i++])
+    }
+
+    //create a div to append
+    const sadge = document.createElement('div');
+    for (let i = 0; i < sad[0].length; i++) {
+      let p = document.createElement('p');
+      p.textContent = `${sad[0][i]} | ${sad[1][i]} | ${sad[2][i]}`;
+      sadge.appendChild(p);
+    }
+    document.getElementById("IT").appendChild(sadge)
+
+
+    console.log(sad)
+
+    //request AI response
     setTimeout(()=>{
       document.getElementById("blurb").classList.add("hidden");
-    }, 500)
-  })
+      sen = "neutral"
+      if(data["sentiment"]> .10){
+        sen = "positive"
+      } else if (data["sentiment"]< -.10){
+        sen = "negative"
+      }
+
+      fetch(`/search`, {
+        method: 'POST',
+        body: JSON.stringify({  
+            'tick' : val.toUpperCase(),
+            'sen' : sen,
+            'reg' : data["regression_prediction"],
+            'close' : data["stock_info"][3],
+            'ins' : data["insider_trading"]
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        }
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok: ' + response.statusText);
+        }
+        return response.text(); // or response.json() if your server responds with JSON
+      })
+      .then(data => {
+        }, 500)
+   })
+   })
   .catch(error => {
     console.error('There has been a problem with your fetch operation:', error);
   });
+    
+    
 });
