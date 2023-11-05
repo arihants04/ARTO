@@ -1,9 +1,36 @@
 
 console.log("script loaded");
 
+function getColor(value) {
+    let color;
+    if (value >= 90) {
+        color = '#00FF00';
+    } else if (value >= 80) {
+        color = '#33FF33';
+    } else if (value >= 70) {
+        color = '#66FF66';
+    } else if (value >= 60) {
+        color = '#99FF99';
+    } else if (value >= 50) {
+        color = '#CCFFCC';
+    } else if (value >= 40) {
+        color = '#FFCCCC';
+    } else if (value >= 30) {
+        color = '#FF9999';
+    } else if (value >= 20) {
+        color = '#FF6666';
+    } else if (value >= 10) {
+        color = '#FF3333';
+    } else {
+        color = '#FF0000';
+    }
+    return color;
+}
+
+
 const ctx = document.getElementById('myChart');
 var data = {
-            value: 100,
+            value: 50,
             max: 100,
             label: "Sentiment"
         };
@@ -19,7 +46,7 @@ var data = {
                 labels: [data.label],
                 datasets: [{
                     data: [data.value, data.max - data.value],
-                    backgroundColor: [ data.value>=50 ?'#c3f0ca': '#f25042', '#0f0e17'],
+                    backgroundColor: [ getColor(data.value), '#0f0e17'],
                     borderWidth: 0
                 }]
             },
@@ -37,12 +64,16 @@ var data = {
                 },
                 animation: {
                     animateRotate: true,
-                    animateScale: false
+                    animateScale: true
                 },
                 title: {
-                    display: true,
+                    display: false,
                     text: data.label,
                     fontSize: 16
+                },
+                plugins:{
+                  legend: false,
+                  title: false,
                 }
             }
         };
