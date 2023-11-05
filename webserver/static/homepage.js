@@ -30,6 +30,12 @@ form.addEventListener('submit', function (event) {
   .then(data => {
     console.log('Success:', data);
     document.getElementById("main-content").classList.remove('mt-40');
+    document.getElementById("blurb").classList.add('scale-0');
+    blurb.style.marginBottom = `-${blurb.offsetHeight}px`;
+    
+    setTimeout(()=>{
+      document.getElementById("blurb").classList.add("hidden");
+    }, 500)
   })
   .catch(error => {
     console.error('There has been a problem with your fetch operation:', error);
