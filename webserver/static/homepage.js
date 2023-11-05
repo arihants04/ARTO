@@ -29,7 +29,7 @@ form.addEventListener('submit', function (event) {
   })
   .then(data => {
     console.log('Success:', data);
-    document.getElementById("main-content").classList.remove('mt-32');
+    document.getElementById("main-content").classList.remove('mt-40');
   })
   .catch(error => {
     console.error('There has been a problem with your fetch operation:', error);
