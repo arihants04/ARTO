@@ -23,8 +23,8 @@ def getai():
             "top_k": 50,
             "top_p": 1,
             "prompt": f"Will {tick} value go up or down? The current consumer sentiment is {sen}, \
-            a regression model is predicting a change of {rMod} from open, and it closed at {clo} today. Most insiders \
-              are currently {insT}",
+            a regression model is predicting a change of {rMod} from open, and it closed at {clo} today. Most of the inside \
+              trading is currently {insT}",
             "temperature": 0.75,
             "system_prompt": "You answer the prompt without any greetings.You answer in short replies of 5 to 6 sentences",
             "max_new_tokens": 800,
@@ -37,7 +37,7 @@ def getai():
         for i in output:
             bruh += (i)
 
-        return jsonify(bruh)
+        return jsonify(bruh.strip())
 
 @app.route('/search', methods=['POST'])
 def search():
@@ -58,6 +58,58 @@ def search():
 
         res_dict["insider_trading"] = get_insider_trading(data)
 
+        pain = {'NVDA': [['Where Will Nvidia Stock Be in 3 Years?',
+   'https://www.fool.com//investing/2023/10/13/where-will-nvidia-stock-be-in-3-years/'],
+  ['How Nvidia Is Trouncing Amazon, Google, and Microsoft on 1 Critical Investing Metric',
+   'https://www.fool.com//investing/2023/10/13/how-nvidia-trouncing-amazon-google-microsoft/'],
+  ['Advanced Micro Devices And Nvidia Just Made Big AI Moves This Week, but Nvidia Still Seems Far Ahead',
+   'https://www.fool.com//investing/2023/10/12/advanced-micro-devices-and-nvidia-just-made-moves/'],
+  ['Nvidia Is Far Behind These 3 Semiconductor Stocks In 1 Key Metric -- Is the AI Growth Stock Still a Buy?',
+   'https://www.fool.com//investing/2023/10/12/nvidia-is-far-behind-these-3-semiconductor-stocks/'],
+  ['1 Green Flag for Nvidia Stock in 2023, and 1 Red Flag',
+   'https://www.fool.com//investing/2023/10/12/1-green-flag-nvidia-stock-2023-1-red-flag/']],
+ 'NFLX': [['What Is the Straight Line Method?',
+   'https://www.fool.com//terms/s/straight-line-method/'],
+  ['2 Popular Tech Stocks Investors Dropped in July',
+   'https://www.fool.com//investing/2023/08/02/2-popular-tech-stocks-investors-dropped-in-july/'],
+  ['Netflix Stock: Is the Party Over?',
+   'https://www.fool.com//investing/2023/07/31/netflix-stock-is-the-party-over/'],
+  ['Should You Buy This Unstoppable FAANG Stock Right Now?',
+   'https://www.fool.com//investing/2023/07/28/should-you-buy-unstoppable-faang-stock-right-now/'],
+  ['The Streaming Stock to Hold as Hollywood Strikes',
+   'https://www.fool.com//investing/2023/07/27/the-streaming-stock-to-hold-as-hollywood-strikes/']],
+ 'TSLA': [['Why Tesla Stock Is Plunging Today',
+   'https://www.fool.com//investing/2023/10/19/why-tesla-stock-is-plunging-today/'],
+  ['1 EV Stock to Buy Hand Over Fist Right Now',
+   'https://www.fool.com//investing/2023/10/19/1-ev-stock-to-buy-hand-over-fist-right-now/'],
+  ['Tesla, Netflix Earnings: Everything You Need to Know',
+   'https://www.fool.com//investing/2023/10/19/tesla-netflix-earnings-everything-you-need-to-know/'],
+  ['1 Reason to Buy This "Magnificent Seven" Stock, and 1 Reason to Avoid It Like the Plague',
+   'https://www.fool.com//investing/2023/10/19/1-reason-buy-and-sell-this-magnificent-seven-stock/'],
+  ["Tesla's War Chest of Cash and Investments Surpasses $26 Billion",
+   'https://www.fool.com//investing/2023/10/19/teslas-war-chest-of-cash-and-investments-swells-to/']],
+ 'AAPL': [['How Many Small-Cap Stocks Are There?',
+   'https://www.fool.com//investing/stock-market/types-of-stocks/small-cap-stocks/how-many-small-cap-stocks/'],
+  ['Better Growth Stock: Apple vs. AMD',
+   'https://www.fool.com//investing/2023/10/11/better-growth-stock-apple-vs-amd/'],
+  ['What Is the Fortune 500?', 'https://www.fool.com//terms/f/fortune-500/'],
+  ['3 Stocks That Can Help Build Generational Wealth for Patient Investors',
+   'https://www.fool.com//investing/2023/10/10/3-stocks-that-can-help-build-generational-wealth/'],
+  ["Almost Half of Warren Buffett's $337 Billion Portfolio Is Invested in Only 1 Stock",
+   'https://www.fool.com//investing/2023/10/09/half-warren-buffett-portfolio-1-stock/']],
+ 'META': [['1 Top Metaverse Stock Ready for a Bull Run',
+   'https://www.fool.com//investing/2023/09/21/1-top-metaverse-stock-ready-for-a-bull-run/'],
+  ['Why Meta Stock Retreated Today',
+   'https://www.fool.com//investing/2023/09/15/why-meta-stock-retreated-today/'],
+  ['Will This Be the Next $1 Trillion Company?',
+   'https://www.fool.com//investing/2023/09/14/will-this-be-the-next-1-trillion-company/'],
+  ["Up 155% This Year, Is Meta Platforms' Stock Still a Good Buy?",
+   'https://www.fool.com//investing/2023/09/14/up-150-this-year-is-meta-platforms-stock-still-a-g/'],
+  ['How to Invest in Reddit Stock',
+   'https://www.fool.com//investing/how-to-invest/stocks/how-to-invest-in-reddit-stock/']]}
+
+
+        res_dict["headlines"] = pain[data]
 
 
         return jsonify(res_dict)

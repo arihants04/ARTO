@@ -1,3 +1,5 @@
+"""
+
 import replicate
 
 output = replicate.run(
@@ -17,5 +19,19 @@ bruh = ""
 
 for i in output:
     bruh += (i)
+
+print(bruh)
+
+"""
+import pandas as pd
+df = pd.read_csv('trading.csv')
+df = (df[df['Symbol'] == 'AAPL'])
+
+bruh = []
+
+for index, row in df.iterrows():
+    bruh.append(row['Transaction Date'])
+    bruh.append(str(row['Transaction Total']))
+    bruh.append(row['Transaction'])
 
 print(bruh)

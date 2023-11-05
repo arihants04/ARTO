@@ -134,6 +134,14 @@ form.addEventListener('submit', function (event) {
             }
         };
     var gaugeChart = new Chart(ctx, config);
+    //IMPLEMENT HEADLINES
+    // const sadge1 = document.createElement('div');
+    for(let i = 0; i < 3; i++){
+      let a = document.createElement('a');
+      a.href = data['headlines'][i][1]
+      a.innerHTML = data['headlines'][i][0]
+      document.getElementById("headlines").appendChild(a)
+    }
 
     //INTERPRET INSIDER TRADING
     let d = data["insider_trading"]
@@ -158,6 +166,7 @@ form.addEventListener('submit', function (event) {
     //request AI response
     setTimeout(()=>{
       document.getElementById("blurb").classList.add("hidden");
+
       let sen = "neutral"
       if(data["sentiment"]> .10){
         sen = "positive"
@@ -168,9 +177,9 @@ form.addEventListener('submit', function (event) {
       let tot = 0
       for(let i = 0; i < sad[0].length; i++){
         if(sad[2][i] == 'Buy'){
-          tot += parseInt(sad[2][i])
+          tot += parseInt(sad[1][i])
         } else {
-          tot -= parseInt(sad[2][i])
+          tot -= parseInt(sad[1][i])
         }
       }
 
