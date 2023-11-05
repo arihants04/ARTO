@@ -154,26 +154,42 @@ form.addEventListener('submit', function (event) {
     document.getElementById("IT").appendChild(sadge)
 
 
-    console.log(sad)
 
     //request AI response
     setTimeout(()=>{
       document.getElementById("blurb").classList.add("hidden");
-      sen = "neutral"
+      let sen = "neutral"
       if(data["sentiment"]> .10){
         sen = "positive"
       } else if (data["sentiment"]< -.10){
         sen = "negative"
       }
 
-      fetch(`/search`, {
+      let tot = 0
+      for(let i = 0; i < sad[0].length; i++){
+        if(sad[2][i] == 'Buy'){
+          tot += parseInt(sad[2][i])
+        } else {
+          tot -= parseInt(sad[2][i])
+        }
+      }
+
+      res = "buying"
+      if (tot > 0){
+          res = "buying"
+      } else {
+          res = "selling"
+      }
+      reg = data["regression_prediction"] - data["stock_info"][0]
+
+      fetch(`/getai`, {
         method: 'POST',
         body: JSON.stringify({  
             'tick' : val.toUpperCase(),
             'sen' : sen,
-            'reg' : data["regression_prediction"],
+            'reg' : reg,
             'close' : data["stock_info"][3],
-            'ins' : data["insider_trading"]
+            'ins' : res
         }),
         headers: {
           "Content-Type": "application/json",
@@ -186,6 +202,7 @@ form.addEventListener('submit', function (event) {
         return response.text(); // or response.json() if your server responds with JSON
       })
       .then(data => {
+          document.getElementById("aigen").textContent = data
         }, 500)
    })
    })

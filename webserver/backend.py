@@ -23,7 +23,7 @@ def getai():
             "top_k": 50,
             "top_p": 1,
             "prompt": f"Will {tick} value go up or down? The current consumer sentiment is {sen}, \
-            a regression model is predicting a change of {rMod}, and it closed at {clo} today. Most insiders \
+            a regression model is predicting a change of {rMod} from open, and it closed at {clo} today. Most insiders \
               are currently {insT}",
             "temperature": 0.75,
             "system_prompt": "You answer the prompt without any greetings.You answer in short replies of 2 to 3 sentences",
