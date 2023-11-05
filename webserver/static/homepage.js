@@ -81,7 +81,7 @@ form.addEventListener('submit', function (event) {
     document.getElementById("main-content").classList.remove('mt-40');
     document.getElementById("blurb").classList.add('scale-0');
     document.getElementById("blurb").style.marginBottom = `-${blurb.offsetHeight}px`;
-    document.getElementById("myChart").classList.remove('hidden');
+    document.getElementById("info").classList.remove('hidden');
     
     setTimeout(()=>{
       document.getElementById("blurb").classList.add("hidden");
