@@ -9,7 +9,7 @@ def homepage():
 @app.route('/search', methods=['POST'])
 def search():
     if request.method == 'POST':
-        data = {"search":"kek", "bruh":"asf"}
+        data = request.json['key']
 
         return jsonify(data)
 
