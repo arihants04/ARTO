@@ -90,8 +90,12 @@ form.addEventListener('submit', function (event) {
     document.getElementById("description-text-h").innerHTML = "Highest price: $"+data["stock_info"][1].toFixed(2);
     document.getElementById("description-text-l").innerHTML = "Lowest price: $"+data["stock_info"][2].toFixed(2);
     document.getElementById("description-text-c").innerHTML = "Closing price: $"+data["stock_info"][3].toFixed(2);
+    document.getElementById("hist").src = "../static/"+val.toLowerCase() + "Hist.png";
+    document.getElementById("big3").src = "../static/"+val.toLowerCase() + "Big3.png";
+    document.getElementById("regression").innerHTML = "Predicted Value: "+data["regression_prediction"].toFixed(2);
 
     ctxData["value"] = data["sentiment"]*50+50;
+    document.getElementById("sentiment").innerHTML = (data["sentiment"]*50+50).toFixed(2) +"%";
     var config = {
             type: 'doughnut',
             data: {

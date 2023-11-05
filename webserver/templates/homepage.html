@@ -2,6 +2,9 @@
 <html lang="en">
 
 <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Moon+Dance&family=Prompt:wght@300&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ARTO</title>
@@ -48,10 +51,12 @@
         .text-paragraph.transition-out {
         transition: margin-bottom 1s ease-out;
         }
+           
     </style>
 </head>
 
-<body class="bg-main-background font-sans leading-normal tracking-normal min-h-screen overflow-y-hidden">
+<body style="font-family: 'Moon Dance', cursive;
+font-family: 'Prompt', sans-serif;" class="bg-main-background font-sans leading-normal tracking-normal min-h-screen overflow-y-hidden">
 
     <!-- Main content container -->
     <div class="w-full max-w-lg mx-auto text-center fade-in-up mt-40" id="main-content">
@@ -111,12 +116,13 @@
 
 
 <div class="grid grid-cols-3 p-2 ml-40 bg-main-background shadow-lg rounded-xl m-10 justify-center hidden" id="info">
-    <div class="text-[#faeee7] bg-[#1a1922] p-6 mb-10 rounded-lg shadow-lg flex items-center justify-center w-72 h-72">
+    <div class="text-[#faeee7] bg-[#1a1922] p-6 mb-10 rounded-lg shadow-lg flex flex-col items-center justify-center align-items w-72 h-72">
+        <h1 class="flex items-center justify-center text-[#faeee7] text-2xl mt-16">Sentiment Rating: </h1>
+        <h1 id="sentiment" class="text-[#faeee7] text-4xl pt-4"></h1>
         <canvas id="myChart" class="w-full h-full"></canvas>
     </div>
-    <div class="text-[#faeee7] bg-[#1a1922] p-6 mb-10 rounded-lg shadow-lg flex items-center justify-center w-72 h-72"
-        id="myChart2">
-        
+    <div class="text-[#faeee7] bg-[#1a1922] p-6 mb-10 rounded-lg shadow-lg flex items-center justify-center w-72 h-72">
+        <img id="hist" src=""></img>
     </div>
     <div class="text-[#faeee7] bg-[#1a1922] p-6 mb-10 rounded-lg shadow-lg flex items-center justify-center w-72 h-72"
         id="myChart3">Test</div>
@@ -125,13 +131,12 @@
         <h1 class="text-xl">Insider Trading</h1>
 
 
-
     </div>
     <div class="text-[#faeee7] bg-[#1a1922] p-6 rounded-lg shadow-lg flex items-center justify-center w-72 h-72"
-        id="myChart3">Test</div>
+        id="regression">Test</div>
     <div class="text-[#faeee7] bg-[#1a1922] p-6 rounded-lg shadow-lg flex items-center justify-center w-72 h-72"
-        id="myChart2">
-        <h1 class="text-xl">Hello</h1>
+        >
+        <img id="big3" class="text-xl"></img>
     </div>
 </div>
 
