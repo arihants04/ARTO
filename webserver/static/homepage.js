@@ -15,7 +15,7 @@ form.addEventListener('submit', function (event) {
   const formData = new FormData(form);
 
   // Use Fetch API to send the POST request with FormData
-  fetch(`/${url}/search`, {
+  fetch(`/search`, {
     method: 'POST',
     body: formData // FormData is automatically set as the body
     // No need to set 'Content-Type': 'multipart/form-data' header,
@@ -29,7 +29,7 @@ form.addEventListener('submit', function (event) {
   })
   .then(data => {
     console.log('Success:', data);
-    mainContent.classList.remove('mt-32');
+    document.getElementById("main-content").classList.remove('mt-32');
   })
   .catch(error => {
     console.error('There has been a problem with your fetch operation:', error);

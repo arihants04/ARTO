@@ -1,15 +1,19 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
+
 app = Flask(__name__)
 
 @app.route('/')
 def homepage():
     return render_template('homepage.html')
 
-@app.route('/search')
+@app.route('/search', methods=['POST'])
 def search():
-    inp = str(request.args.get('s'))
+    if request.method == 'POST':
+        data = {"search":"kek", "bruh":"asf"}
 
-    return return_info("yeet")
+        return jsonify(data)
+
+
 
 def return_info(stock):
     return stock + " still in progress"
