@@ -157,7 +157,6 @@ form.addEventListener('submit', function (event) {
 
     //request AI response
     setTimeout(()=>{
-      document.getElementById("blurb").classList.add("hidden");
       let sen = "neutral"
       if(data["sentiment"]> .10){
         sen = "positive"
@@ -205,6 +204,9 @@ form.addEventListener('submit', function (event) {
           document.getElementById("aigen").textContent = data
         }, 500)
    })
+   setTimeout(()=>{
+    document.getElementById("blurb").classList.add("hidden");
+   }, 1000)
    })
   .catch(error => {
     console.error('There has been a problem with your fetch operation:', error);
