@@ -1,6 +1,19 @@
 
 console.log("script loaded");
 
+const ctx = document.getElementById('myChart');
+var ctxData = {
+            value: 20,
+            max: 100,
+            label: "Sentiment"
+        };
+
+        // Chart.js chart's configuration
+        // We are using a Doughnut type chart to 
+        // get a Gauge format chart 
+        // This is approach is fine and actually flexible
+        // to get beautiful Gauge charts out of it
+        
 function getColor(value) {
     let color;
     if (value >= 90) {
@@ -26,60 +39,6 @@ function getColor(value) {
     }
     return color;
 }
-
-
-const ctx = document.getElementById('myChart');
-var data = {
-            value: 50,
-            max: 100,
-            label: "Sentiment"
-        };
-
-        // Chart.js chart's configuration
-        // We are using a Doughnut type chart to 
-        // get a Gauge format chart 
-        // This is approach is fine and actually flexible
-        // to get beautiful Gauge charts out of it
-        var config = {
-            type: 'doughnut',
-            data: {
-                labels: [data.label],
-                datasets: [{
-                    data: [data.value, data.max - data.value],
-                    backgroundColor: [ getColor(data.value), '#0f0e17'],
-                    borderWidth: 0
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                cutoutPercentage: 85,
-                rotation: -90,
-                circumference: 180,
-                tooltips: {
-                    enabled: false
-                },
-                legend: {
-                    display: false
-                },
-                animation: {
-                    animateRotate: true,
-                    animateScale: true
-                },
-                title: {
-                    display: false,
-                    text: data.label,
-                    fontSize: 16
-                },
-                plugins:{
-                  legend: false,
-                  title: false,
-                }
-            }
-        };
-
-        // Create the chart
-        var gaugeChart = new Chart(ctx, config);
 
 
 // Select the form element
@@ -116,7 +75,7 @@ form.addEventListener('submit', function (event) {
     return response.text(); // or response.json() if your server responds with JSON
   })
   .then(data => {
-    //console.log('Success:', data);
+    console.log('Success:', data);
     document.querySelector("body").classList.remove('overflow-y-hidden');
     document.getElementById("main-content").classList.remove('mt-40');
     document.getElementById("blurb").classList.add('scale-0');
@@ -124,61 +83,52 @@ form.addEventListener('submit', function (event) {
     document.getElementById("info").classList.remove('hidden');
     document.getElementById("description").classList.remove('hidden');
     document.getElementById("summary").classList.remove('hidden');
+    data = JSON.parse(data);
+    document.getElementById("description-title").innerHTML = val.toUpperCase();
+    document.getElementById("description-text-o").innerHTML = "Opening price: $"+data["stock_info"][0].toFixed(2);
+    document.getElementById("description-text-h").innerHTML = "Highest price: $"+data["stock_info"][1].toFixed(2);
+    document.getElementById("description-text-l").innerHTML = "Lowest price: $"+data["stock_info"][2].toFixed(2);
+    document.getElementById("description-text-c").innerHTML = "Closing price: $"+data["stock_info"][3].toFixed(2);
 
-    if (val.toUpperCase() == "NVDA"){
-        console.log("NVDA");
-        data = JSON.parse(data);
-
-        document.getElementById("description-title").innerHTML = val.toUpperCase();
-        document.getElementById("description-text-o").innerHTML = "Opening price: $"+data["stock_info"][0].toFixed(2);
-        document.getElementById("description-text-h").innerHTML = "Highest price: $"+data["stock_info"][1].toFixed(2);
-        document.getElementById("description-text-l").innerHTML = "Lowest price: $"+data["stock_info"][2].toFixed(2);
-        document.getElementById("description-text-c").innerHTML = "Closing price: $"+data["stock_info"][3].toFixed(2);
-        
-    }
-    else if (val.toUpperCase() == "AAPL"){
-        console.log("AAPL");
-        data = JSON.parse(data);
-
-        document.getElementById("description-title").innerHTML = val.toUpperCase();
-        document.getElementById("description-text-o").innerHTML = "Opening price: $"+data["stock_info"][0].toFixed(2);
-        document.getElementById("description-text-h").innerHTML = "Highest price: $"+data["stock_info"][1].toFixed(2);
-        document.getElementById("description-text-l").innerHTML = "Lowest price: $"+data["stock_info"][2].toFixed(2);
-        document.getElementById("description-text-c").innerHTML = "Closing price: $"+data["stock_info"][3].toFixed(2);
-    }
-    else if (val.toUpperCase() == "TSLA"){
-        console.log("TSLA");
-        data = JSON.parse(data);
-
-        document.getElementById("description-title").innerHTML = val.toUpperCase();
-        document.getElementById("description-text-o").innerHTML = "Opening price: $"+data["stock_info"][0].toFixed(2);
-        document.getElementById("description-text-h").innerHTML = "Highest price: $"+data["stock_info"][1].toFixed(2);
-        document.getElementById("description-text-l").innerHTML = "Lowest price: $"+data["stock_info"][2].toFixed(2);
-        document.getElementById("description-text-c").innerHTML = "Closing price: $"+data["stock_info"][3].toFixed(2);
-    }
-
-    else if (val.toUpperCase() == "AMZN"){
-        console.log("AMZN");
-        data = JSON.parse(data);
-
-        document.getElementById("description-title").innerHTML = val.toUpperCase();
-        document.getElementById("description-text-o").innerHTML = "Opening price: $"+data["stock_info"][0].toFixed(2);
-        document.getElementById("description-text-h").innerHTML = "Highest price: $"+data["stock_info"][1].toFixed(2);
-        document.getElementById("description-text-l").innerHTML = "Lowest price: $"+data["stock_info"][2].toFixed(2);
-        document.getElementById("description-text-c").innerHTML = "Closing price: $"+data["stock_info"][3].toFixed(2);
-    }
-    
-    else if (val.toUpperCase() == "NFLX"){
-        console.log("NFLX");
-        data = JSON.parse(data);
-
-        document.getElementById("description-title").innerHTML = val.toUpperCase();
-        document.getElementById("description-text-o").innerHTML = "Opening price: $"+data["stock_info"][0].toFixed(2);
-        document.getElementById("description-text-h").innerHTML = "Highest price: $"+data["stock_info"][1].toFixed(2);
-        document.getElementById("description-text-l").innerHTML = "Lowest price: $"+data["stock_info"][2].toFixed(2);
-        document.getElementById("description-text-c").innerHTML = "Closing price: $"+data["stock_info"][3].toFixed(2);
-    }
-
+    ctxData["value"] = data["sentiment"]*50+50;
+    var config = {
+            type: 'doughnut',
+            data: {
+                labels: [ctxData.label],
+                datasets: [{
+                    data: [ctxData.value, ctxData.max - ctxData.value],
+                    backgroundColor: [ getColor(ctxData.value), '#0f0e17'],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutoutPercentage: 85,
+                rotation: -90,
+                circumference: 180,
+                tooltips: {
+                    enabled: false
+                },
+                legend: {
+                    display: false
+                },
+                animation: {
+                    animateRotate: true,
+                    animateScale: true
+                },
+                title: {
+                    display: false,
+                    text: ctxData.label,
+                    fontSize: 16
+                },
+                plugins:{
+                  legend: false,
+                  title: false,
+                }
+            }
+        };
+    var gaugeChart = new Chart(ctx, config);
     setTimeout(()=>{
       document.getElementById("blurb").classList.add("hidden");
     }, 500)
