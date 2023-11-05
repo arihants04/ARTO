@@ -46,7 +46,7 @@ def search():
 
         data = str(request.json['key']).upper()
 
-        TICKERS = ["NVDA", "NFLX", "TSLA", "AAPL", "META", "BBBY"]
+        TICKERS = ["NVDA", "NFLX", "TSLA", "AAPL", "META"]
 
         if data not in TICKERS:
             return jsonify("404")
@@ -133,6 +133,7 @@ def get_stock_details(data):
 
 def return_sentiment(data):
     fname = ""
+    TICKERS = ["NVDA", "NFLX", "TSLA", "AAPL", "META"]
 
     if data == "NVDA":
         fname = "nvidia.pkl"
